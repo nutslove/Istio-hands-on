@@ -1,0 +1,17 @@
+---
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: vs-for-retry
+  namespace: default
+spec:
+  hosts:
+    - calculate.default.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: calculate.default.svc.cluster.local
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error

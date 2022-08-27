@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+        <style type="text/css">
+                /* こういうふうにHTML内に直接CSSを書くこともできるし、下のようにCSSファイルを別出してそこに書くこともできる 
+                .container {
+                        width: 100%;
+                        height: auto;
+                        background-color: rgb(255, 185, 153);
+                        margin-right: auto;
+                        margin-left: auto;
+                        color: #066;
+                }
+                */
+        </style>
+        <meta charset="utf-8">
+        <title>{{title | default('FastAPI Welcome Page')}}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+        <h1>{{title | default('FastAPI Welcome Page')}}</h1>
+        <table border="0" width=80% align="center">
+        <tr>
+        <td>
+        <div class="frame">
+                {% if animal_type == "cat" %}
+                <img src="{{ url_for('static', path='/cat.jpg') }}", alt="My image">
+                {% elif animal_type == "dog" %}
+                <img src="{{ url_for('static', path='/dog.jpg') }}", alt="My image">
+                {% endif %}
+        </div>
+        </td>
+        <td valign="top">
+        <table border="1" width=45% align="center">
+                <tr>
+                        <th>名前</th>
+                        <th>{{ name }}</th>
+                </tr>
+                <tr>
+                        <th>種類</th>
+                        <th>{{ breed }}</th>
+                </tr>
+                <tr>
+                        <th>性別</th>
+                        <th>{{ sex }}</th>
+                </tr>
+                <tr>
+                        <th>年齢</th>
+                        <th>{{ age }}</th>
+                </tr>
+                <tr>
+                        <th>飼主</th>
+                        <th>{{ owner }}</th>
+                </tr>
+        </tr>
+        </table>
+        </table>
+        <form method="post">
+                <label for="num1">数字1: </label>
+                <input type="number" name="num1" value="" required/><br>
+                <label for="num2">数字2: </label>
+                <input type="number" name="num2" required><br>
+                <input type="submit" value="{{ calculation }}">
+        </form>
+        <p>計算結果 = {{ result }}</p>
+</body>
+</html>

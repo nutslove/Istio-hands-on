@@ -1,0 +1,14 @@
+---
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: vs-for-timeout
+  namespace: default
+spec:
+  hosts:
+    - calculate.default.svc.cluster.local
+  http:
+    - route:
+      - destination:
+          host: calculate.default.svc.cluster.local
+      timeout: 2s
